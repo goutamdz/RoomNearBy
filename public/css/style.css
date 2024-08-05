@@ -1,0 +1,155 @@
+.fa-regular{
+    color:tomato;
+    font-size: 2.5rem;;
+}
+
+.f-info-links a {
+    text-decoration: none;
+}
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+    width: 100%;
+    vertical-align: mid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.f-info {
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+
+.row{
+    gap:10px;
+    flex-wrap: wrap;
+} 
+
+.card-img-top{
+    height:16rem;
+}
+
+
+/* .box{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+} */
+
+.box input, textarea{
+    width:25vw;
+    border-radius: 10px;
+    border:2px solid black;
+    padding: 5px;
+}
+.box label{
+    /* color:gray; */
+    margin-bottom: 5px;;
+}
+
+
+
+@media(max-width:550px) {
+    .box input, textarea{
+        width:70vw;
+    }
+
+    .box button{
+        width:70vw;
+    }
+}
+
+.card{
+    cursor: pointer;
+}
+
+.box button{
+    border-radius:10px;
+    width:25vw;
+    height: 3rem;
+  
+    font-weight: bold;
+}
+
+
+.containerx{
+    display:flex;
+}
+
+.containerx .cardx{
+    width:80%;
+    padding:5px;
+}
+.container .cardx img{
+    height:70vh;
+    object-fit: cover;
+}
+
+.containerx .boxx{
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+
+}
+
+.container .boxx p{
+    font-weight: bold;
+}
+
+.flexx{
+    display:flex;
+    flex-direction: row;
+    gap:10px;
+}
+
+@media(max-width:500px){
+    .containerx .cardx{
+        width:80%;
+        display: flex;
+        flex-direction: column;
+
+    }
+}
+
+
+@media(max-width:770px){
+    .containerx{
+        flex-direction: column;
+    }
+
+    .containerx .cardx{
+        width:80%;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .containerx .boxx{
+        border:2px gray solid;
+        margin-top:15px;
+        padding-top:10px;
+        
+        flex-direction: row;
+        flex-wrap: wrap;
+        height:10%;
+        justify-content: space-between;
+        width:80%;
+        gap:10px
+    }
+}
+

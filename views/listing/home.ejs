@@ -1,0 +1,22 @@
+<% layout('/layout/boilerplate.ejs') -%>
+    <body>
+        <h3 style="color:gray">All Listings </h1>
+        <br>
+            <div class="row row-cols-lg-3 row-cols-md-3 mt-3 row-cols-sm-1">
+                <%for(ele of result){%>
+                    <div class="card" style="width: 18rem;" onclick="location.href='/listing/<%=ele._id%>'">
+                        <img src="<%=ele.image.url%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b>
+                                    <%=ele.title%>
+                                </b>
+                            <p>&#8377 <%=ele.price.toLocaleString("en-IN")%></p>
+                            </p>
+                        </div>
+                    </div>
+                <%}%>
+            </div>
+            <br>
+
+    </body>

@@ -1,0 +1,110 @@
+<% layout('/layout/boilerplate.ejs') -%>
+<body>
+
+    <div class="containerx">
+        <div class="cardx mb-5">
+            <p class="card-text">
+                <b><%=result.title%></b>
+            </p>
+            <img src="<%=result.image.url%>" class="card-img-top" alt="image">
+            <div >
+                <i>&#10084; Contributed by @<%=result.owner.username%></i>
+                <br>
+                <p><%=result.description%></p>
+                <% if (curUser && curUser._id.equals(result.owner._id)) { %>
+                    <div class="flexx">
+                        <form method="GET" action="/listing/<%= result._id %>/edit">
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                        <br>
+                        
+                        <form method="POST" action="/listing/<%= result._id %>/delete?_method=DELETE" id="delete-form">
+                            <button type="button" class="btn btn-danger" id="delete-button">Delete it</button>
+                        </form>
+                    </div>
+                <% } %>
+                
+            </div>
+        </div>
+        <div class="boxx">
+            <p><i class="fa-solid fa-location-dot"></i>  <%=result.location%></p>
+            <p><i class="fa-solid fa-earth-americas"></i>  <%=result.country%></p>
+            <p>&#8377 <%=result.price.toLocaleString("en-IN")%></p>
+            <span><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Contact Now
+            </button></span>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">contact now to book</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p><i class="fa-solid fa-phone"></i>&nbsp&nbsp<%=result.phoneNumber%></p>
+                      <p><i class="fa-solid fa-envelope"></i>&nbsp&nbsp<%=result.Email%></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <%if(curUser){%>
+        <form method="POST" action="/listing/<%=result._id%>/review">
+            <h3 class="mb-3">Drop a Review</h3>
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="rating" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="rating" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="rating" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="rating" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="rating" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
+            <textarea class="form-control mb-3" placeholder="Leave a comment here" id="floatingTextarea2" style="width:90%;height: 100px;border:2px solid gray"  name="comment"></textarea>
+            <button class="btn btn-primary mb-3">Submit</button>
+        </form>
+    <%}%>
+    <hr>
+    <h3 class="mb-5">All Reviews </h3>
+
+    
+
+    <div class="row row-cols-auto mb-5">
+        <% for (let ele of result.reviews) { %>
+        <div class="card col">
+            <div class="card-header">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span class="card-title">@<%=ele.author.username%></span>
+            </div>
+            <div class="card-body">
+                
+                <p class="starability-result" data-rating="<%= ele.rating %>"></p>
+                <p><%= ele.comment %></p>
+                <%if(curUser && curUser._id.equals(ele.author._id)){%>
+                    <form method="POST" action="/listing/<%=result._id%>/review/<%=ele._id%>?_method=DELETE" id="deleteform">
+                        <button class="btn btn-danger" id="deletebutton">Delete it</button>
+                    </form>
+                <%}%>
+            </div>
+            <div class="card-footer text-body-secondary">
+            <%= ele.createdAt.getDate() %>
+            <%=monthNames[ele.createdAt.getMonth()]%>
+            <%=ele.createdAt.getFullYear()%>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+</body>
+
+
