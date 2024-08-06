@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const initData = require('./data.js');
 const list = require('../models/list.js');
 
-mongoose.connect("mongoURL")//will not work now
+mongoose.connect("mongodb+srv://Goutam:Admin@cluster0.xdzxz20.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")//will not work now
     .then(() => {
         console.log("Database connected successfully!");
     })
