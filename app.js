@@ -71,8 +71,7 @@ app.use("/listing", listingRoute);
 app.use("/",userRoute);
 
 app.get("/",(req,res)=>{
-    console.log(req.user);
-    res.send("hello");
+    res.redirect("/listing")
 })
 
 
