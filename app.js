@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV != "production") {
+    require("dotenv").config();
+} 
 const express = require('express');
 const app=express();
 const path=require('path')
@@ -76,8 +78,6 @@ app.get("/",(req,res)=>{
     res.redirect("/listing")
 })
 
-const port=process.env.PORT || 3000
-
-app.listen(port,()=>{
-    console.log("Server is listening at port 2000");
+app.listen(process.env.PORT,()=>{
+    console.log("Server is listening at port "+process.env.PORT);
 })
