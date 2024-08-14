@@ -81,7 +81,8 @@ app.get("/",(req,res)=>{
     res.redirect("/listing")
 })
 
+const port=process.env.PORT || 3000
 
-app.listen(2000,()=>{
+app.listen(port,()=>{
     console.log("Server is listening at port 2000");
 })
