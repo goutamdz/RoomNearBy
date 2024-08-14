@@ -26,9 +26,8 @@ module.exports.postingNewListing = async (req, res) => {
     let filename = req.file.filename;
 
     let { title, description, image, price, location, country,Email,phoneNumber } = req.body;
-    let listing1 = new list({ title, description, price, location, country })
+    let listing1 = new list({ title, description, price, location, country ,Email,phoneNumber})
     listing1.image = { url, filename };
-    listing1.contact={Email,phoneNumber};
     listing1.owner = req.user._id;
     await listing1.save()
         .then(() => {
@@ -36,8 +35,8 @@ module.exports.postingNewListing = async (req, res) => {
             req.flash("status", "New Listing Added Successfully");
             res.redirect("/listing");
         })
-        .catch(() => {
-            console.log("Data not able to save in db");
+        .catch((err) => {
+            console.log(err.message);
             req.flash("status", "New Listing could not be added!");
             res.redirect("/listing");
         });

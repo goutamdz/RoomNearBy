@@ -6,8 +6,8 @@ let joeSchema=joi.object({
     price:joi.number().min(0).required(),
     location:joi.string().required(),
     country:joi.string(),
-    Email:joi.required(),
-    phoneNumber:joi.string().max(15).required()
+    Email:joi.string(),
+    phoneNumber:joi.string().max(15)
 }).required();
 
 let commentSchema=joi.object({
