@@ -1,5 +1,4 @@
 require('dotenv').config();
-const cors = require('cors');
 const express = require('express');
 const app=express();
 const path=require('path')
@@ -56,11 +55,7 @@ app.use((req,res,next)=>{
     next();
 })
 
-const corsOptions = {
-    origin: process.env.MONGO_URL,
-    credentials: true
-}
-app.use(cors(corsOptions));
+
 
 
 app.engine('ejs', engine);
